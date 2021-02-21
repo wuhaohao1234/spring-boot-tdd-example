@@ -1,7 +1,9 @@
 package com.example.demo;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 @RestController
 @RequestMapping(value = "/users")
@@ -18,7 +20,8 @@ public class UserController {
         return result;
     }
     @PostMapping("/")
-    public String postUser(@RequestBody User user) {
+    @ApiOperation(value = "create user", notes = "create User by user Object")
+    public String postUser(@Valid @RequestBody User user) {
         users.put(user.getId(), user);
         return "success";
     }
